@@ -1,0 +1,77 @@
+body {
+    background-color: #000000;
+    color: white;
+}
+
+.title {
+    text-align: center;
+}
+
+.intro {
+    text-align: center;
+}
+
+.rules {
+    text-align: center;
+}
+
+.startBtn {
+    padding-left: 50px;
+    padding-right: 50px;
+    padding-top: 25px;
+    padding-bottom: 25px;
+    cursor: pointer;
+    background-color: #E6E6FA;
+    border: none;
+    border-radius: 10px;
+}
+
+.startBtn:hover {
+    background-color: #4682B4;
+}
+
+.gameBtn {
+    text-align: center;
+    margin: auto;
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    
+}
+
+.counting {
+    display: flex;
+    justify-content: flex-end;
+}
+
+.rock {
+    margin-right: 50px;
+}
+
+.paper {
+    margin-right: 50px;
+}
+
+.resetGameBtn { 
+    padding-left: 50px;
+    padding-right: 50px;
+    padding-top: 25px;
+    padding-bottom: 25px;
+    cursor: pointer;
+    background-color: #E6E6FA;
+    border: none;
+    border-radius: 10px;
+}
+
+.resetGameBtn:hover { 
+    background-color: #4682B4;
+}
+
+.resetBtn {
+    text-align: center;
+    margin: auto;
+    position: absolute;
+    top: 60%;
+    left: 45%;
+}
