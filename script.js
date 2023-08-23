@@ -35,8 +35,8 @@ function updateScore() {
 
 function playGame(userChoice) {
     const computerChoice = generateComputerChoice();
-    const playerScoreBoard = document.getElementById('p-count');
-    const computerScoreBoard = document.getElementById('c-count');
+    const playerScoreBoard = pCountElement
+    const computerScoreBoard = cCountElement
 
     choiceCounts[userChoice]++;
     choiceCounts[computerChoice]++;
