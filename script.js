@@ -1,5 +1,10 @@
 var userScore = parseInt(localStorage.getItem('userScore')) || 0;
 var computerScore = parseInt(localStorage.getItem('computerScore')) || 0;
+const pCountElement = document.getElementById('p-count')
+const cCountElement = document.getElementById('c-count')
+const rockCountElement = document.getElementById('rock-count')
+const paperCountElement = document.getElementById('paper-count')
+const scissorsCountElement = document.getElementById('scissors-count')
 var gameResults = [];
 var choiceCounts = {
     'K': 0,
@@ -14,27 +19,24 @@ function generateComputerChoice() {
 }
 
 function updateScore() {
-    // Update scores in the HTML
-    document.querySelector('.p-count').textContent = userScore;
-    document.querySelector('.c-count').textContent = computerScore;
-    document.querySelector('.rock-count').textContent = choiceCounts['K'];
-    document.querySelector('.paper-count').textContent = choiceCounts['P'];
-    document.querySelector('.scissors-count').textContent = choiceCounts['N'];
+    pCountElement.textContent = userScore;
+    cCountElement.textContent = computerScore;
+    rockCountElement.textContent = choiceCounts['K'];
+    paperCountElement.textContent = choiceCounts['P'];
+    scissorsCountElement.textContent = choiceCounts['N'];
 
-    // Update scores in localStorage
     localStorage.setItem('userScore', userScore);
     localStorage.setItem('computerScore', computerScore);
     localStorage.setItem('choiceCounts', JSON.stringify(choiceCounts))
 
-    // Log scores to the console
     console.log('userscore:', userScore);
     console.log('computerscore:', computerScore);
 }
 
 function playGame(userChoice) {
     const computerChoice = generateComputerChoice();
-    const playerScoreBoard = document.querySelector('.p-count');
-    const computerScoreBoard = document.querySelector('.c-count');
+    const playerScoreBoard = document.getElementById('p-count');
+    const computerScoreBoard = document.getElementById('c-count');
 
     choiceCounts[userChoice]++;
     choiceCounts[computerChoice]++;
@@ -68,7 +70,6 @@ function playGame(userChoice) {
     });
     console.log(choiceCounts)
 
-    // Call updateScore to update and log scores
     updateScore();
 }
 
