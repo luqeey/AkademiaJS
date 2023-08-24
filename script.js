@@ -1,6 +1,6 @@
 let userScore = parseInt(localStorage.getItem('userScore')) || 0;
 let computerScore = parseInt(localStorage.getItem('computerScore')) || 0;
-let choiceCountsLS = parseInt(localStorage.getItem('choiceCounts')) || 0;
+let choiceCountsLS = parseInt(localStorage.getItem('choiceCounts')) || 0
 const pCountElement = document.getElementById('p-count')
 const cCountElement = document.getElementById('c-count')
 const rockCountElement = document.getElementById('rock-count')
@@ -26,11 +26,33 @@ function updateScore() {
     paperCountElement.textContent = choiceCounts['P'];
     scissorsCountElement.textContent = choiceCounts['N'];
 
+    const gameResultsTableBody = document.getElementById('gameResultsTableBody');
+    const newRow = document.createElement('tr');
+
+    const round = gameResults.length; 
+
+    let result = 'Draw';
+    if (userScore > computerScore) {
+        result = 'Win';
+    } else if (userScore < computerScore) {
+        result = 'Loss';
+    }
+
+    newRow.innerHTML = `
+        <td>${round}</td>
+        <td>${userScore}</td>
+        <td>${computerScore}</td>
+        <td>${result}</td>
+    `;
+
+    gameResultsTableBody.appendChild(newRow);
+
     localStorage.setItem('userScore', userScore);
     localStorage.setItem('computerScore', computerScore);
     localStorage.setItem('choiceCounts', JSON.stringify(choiceCounts))
 
 }
+    
 
 function playGame(userChoice) {
     const computerChoice = generateComputerChoice();
@@ -80,3 +102,5 @@ function clearLocalStorage() {
     localStorage.clear()
     location.reload()
 }
+
+

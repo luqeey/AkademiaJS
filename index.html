@@ -5,6 +5,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>KPN Hra</title>
     <link rel="stylesheet" href="style.css">
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
 </head>
 <body>
     <div class="title">
@@ -54,6 +55,22 @@
     <div class="resetBtn">
         <button onclick="clearLocalStorage()" class="resetGameBtn">Nova Hra</button>
     </div>
+        <div class="gameResults">
+            <h2>Game Results</h2>
+            <table class="tableOfGame">
+                <thead>
+                    <tr>
+                        <th>Round</th>
+                        <th>Player Score</th>
+                        <th>Computer Score</th>
+                        <th>Result</th>
+                    </tr>
+                </thead>
+                <tbody id="gameResultsTableBody">
+                    <!-- Table rows will be added here -->
+                </tbody>
+            </table>
+        </div>
     
     <script src="script.js"></script>
 </body>
