@@ -20,22 +20,51 @@ function generateComputerChoice() {
 }
 
 function updateScore() {
+   
+
+    localStorage.setItem('userScore', userScore);
+    localStorage.setItem('computerScore', computerScore);
+    localStorage.setItem('choiceCounts', JSON.stringify(choiceCounts))
+
+
+}
+    
+
+function playGame(playerName, userChoice) {
+    const computerChoice = generateComputerChoice();
+    const gameResultsTableBody = document.getElementById('gameResultsTableBody');
+    const newRow = document.createElement('tr');
+
+    const round = gameResults.length + 1; 
+
     pCountElement.textContent = userScore;
     cCountElement.textContent = computerScore;
     rockCountElement.textContent = choiceCounts['K'];
     paperCountElement.textContent = choiceCounts['P'];
     scissorsCountElement.textContent = choiceCounts['N'];
 
-    const gameResultsTableBody = document.getElementById('gameResultsTableBody');
-    const newRow = document.createElement('tr');
+    choiceCounts[userChoice]++;
+    choiceCounts[computerChoice]++;
 
-    const round = gameResults.length; 
+    let result = '';
 
-    let result = 'Draw';
-    if (userScore > computerScore) {
-        result = 'Win';
-    } else if (userScore < computerScore) {
-        result = 'Loss';
+    if (userChoice === computerChoice) {
+        alert("Remiza!");
+        result = 'Draw';
+    } else if (
+        (userChoice === 'K' && computerChoice === 'N') ||
+        (userChoice === 'P' && computerChoice === 'K') ||
+        (userChoice === 'N' && computerChoice === 'P')
+    ) {
+        alert('Vyhral/a si!');
+        result = `${playerName} won`;
+        userScore++;
+        pCountElement.textContent = userScore;
+    } else {
+        alert('Prehral/a si!');
+        result = 'Computer won';
+        computerScore++;
+        cCountElement.textContent = computerScore;
     }
 
     newRow.innerHTML = `
@@ -47,46 +76,24 @@ function updateScore() {
 
     gameResultsTableBody.appendChild(newRow);
 
-    localStorage.setItem('userScore', userScore);
-    localStorage.setItem('computerScore', computerScore);
-    localStorage.setItem('choiceCounts', JSON.stringify(choiceCounts))
-
-}
-    
-
-function playGame(userChoice) {
-    const computerChoice = generateComputerChoice();
-
-    choiceCounts[userChoice]++;
-    choiceCounts[computerChoice]++;
-
-
-    if (userChoice === computerChoice) {
-        alert("Remiza!");
-    } else if (
-        (userChoice === 'K' && computerChoice === 'N') ||
-        (userChoice === 'P' && computerChoice === 'K') ||
-        (userChoice === 'N' && computerChoice === 'P')
-    ) {
-        alert('Vyhral/a si!');
-        userScore++;
-        pCountElement.innerHTML = userScore;
-    } else {
-        alert('Prehral/a si!');
-        computerScore++;
-        cCountElement.innerHTML = computerScore;
-    }
-
     gameResults.push({
         userChoice: userChoice,
         computerChoice: computerChoice,
-        result: gameResults
+        result: result
     });
 
     updateScore();
 }
 
+
 function startGame() {
+    const playerNameInput = document.getElementById('player-name');
+    const playerName = playerNameInput.value.trim();
+
+    if (playerName === '') {
+        alert('Please enter your name.');
+        return;
+    }
     let userInput = prompt("Zadaj: K, P, alebo N:", "");
     if (userInput !== null) {
         var userChoice = userInput.toUpperCase();
