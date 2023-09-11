@@ -94,3 +94,17 @@ th, td {
     padding: 8px;
     text-align: center;
 }
+
+.playerN {
+    background-color: #E6E6FA;
+    border: none;
+    border-radius: 10px;
+    padding: 10px;
+}
+
+.namePlayer {
+    align-items: center;
+    position: absolute;
+    top: 30%;
+    left: 45%;
+}

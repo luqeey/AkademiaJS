@@ -7,7 +7,7 @@ const rockCountElement = document.getElementById('rock-count')
 const paperCountElement = document.getElementById('paper-count')
 const scissorsCountElement = document.getElementById('scissors-count')
 let gameResults = [];
-let choiceCounts = {
+let choiceCounts = JSON.parse(localStorage.getItem('choiceCounts')) || {
     'K': 0,
     'P': 0,
     'N': 0
@@ -98,7 +98,7 @@ function startGame() {
     if (userInput !== null) {
         var userChoice = userInput.toUpperCase();
         if (userChoice === 'K' || userChoice === 'P' || userChoice === 'N') {
-            playGame(userChoice);
+            playGame(playerName, userChoice);
         } else {
             alert('Vyber si z naslednujucich moznosti: K, P, alebo N.');
         }
