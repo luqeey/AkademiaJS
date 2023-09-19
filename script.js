@@ -83,7 +83,22 @@ function playGame(playerName, userChoice) {
     });
 
     updateScore();
+
+
+    if (userScore >= 5) {
+        const userInput = prompt(`Gratulujeme, ${playerName}! Dosiahol si score 5. Chceš hrat znova? (ano/nie)`);
+        if (userInput !== null) {
+            if (userInput.toLowerCase() === "nie") {
+                clearLocalStorage();
+            } else if (userInput.toLowerCase() === "ano") {
+                alert("Pokracuj v hrani a nech sa dari");
+            } else {
+                alert("Prosim odpovedaj (ano/nie).");
+            }
+        }
+    }
 }
+
 
 
 function startGame() {
@@ -91,7 +106,7 @@ function startGame() {
     const playerName = playerNameInput.value.trim();
 
     if (playerName === '') {
-        alert('Please enter your name.');
+        alert('Prosim zadaj svoje meno');
         return;
     }
     let userInput = prompt("Zadaj: K, P, alebo N:", "");
